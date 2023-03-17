@@ -12,20 +12,25 @@ import 'package:wonders/logic/wallpaper_logic.dart';
 import 'package:wonders/logic/wonders_logic.dart';
 
 void main() async {
+  //We use WidgetsFlutterBinding.ensureInitialized() to make sure that the widgets
+  // framework is properly set up and ready to be used in our app.
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Keep native splash screen up until app is finished bootstrapping
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Start app
+  /// Starts app and sets up the necessary objects and services that the app
+  ///  will use throughout its lifecycle.
   registerSingletons();
   runApp(WondersApp());
+  //Used to prepare the app for use and ensure that everything is set up and ready to go.
   await appLogic.bootstrap();
 
   // Remove splash screen when bootstrap is complete
   FlutterNativeSplash.remove();
 }
 
-/// Creates an app using the [MaterialApp.router] constructor and the global `appRouter`, an instance of [GoRouter].
+/// Creates an app using the [MaterialApp.router] constructor and the global
+/// `appRouter`, an instance of [GoRouter].
 class WondersApp extends StatelessWidget with GetItMixin {
   WondersApp({Key? key}) : super(key: key);
   @override
