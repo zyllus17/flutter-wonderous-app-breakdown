@@ -12,12 +12,18 @@ class AppLogic {
   /// The router will use this to prevent redirects while bootstrapping.
   bool isBootstrapComplete = false;
 
-  /// Indicates which orientations the app will allow be default. Affects Android/iOS devices only.
+  /// Indicates which orientations the app will allow be default.
+  /// Affects Android/iOS devices only.
   /// Defaults to both landscape (hz) and portrait (vt)
   List<Axis> supportedOrientations = [Axis.vertical, Axis.horizontal];
 
-  /// Allow a view to override the currently supported orientations. For example, [FullscreenVideoViewer] always wants to enable both landscape and portrait.
+  /// Allow a view to override the currently supported orientations.
+  /// For example, [FullscreenVideoViewer] always wants to enable both landscape and portrait.
   /// If a view sets this override, they are responsible for setting it back to null when finished.
+
+  ///This code creates a private list that can hold values of type Axis,
+  ///and provides a way for other parts of the code to set the value of this list.
+  ///When the value is set, it updates the system orientation accordingly.
   List<Axis>? _supportedOrientationsOverride;
   set supportedOrientationsOverride(List<Axis>? value) {
     if (_supportedOrientationsOverride != value) {
@@ -35,7 +41,7 @@ class AppLogic {
       await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
     }
 
-    // Load any bitmaps the views might need
+    // Loads bitmap assets into memory that may be required later
     await AppBitmaps.init();
 
     // Set preferred refresh rate to the max possible (the OS may ignore this)
