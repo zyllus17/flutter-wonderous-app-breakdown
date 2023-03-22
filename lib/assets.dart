@@ -7,6 +7,7 @@ class AppBitmaps {
   static late final BitmapDescriptor mapMarker;
 
   static Future<void> init() async {
+    //Initialize the mapMarker image
     mapMarker = await BitmapDescriptor.fromAssetImage(
       ImageConfiguration(devicePixelRatio: PlatformInfo.pixelRatio),
       '${ImagePaths.common}/location-pin.png',
@@ -34,7 +35,8 @@ class ImagePaths {
   static String appLogoPlain = '$common/app-logo-plain.png';
 }
 
-/// Consolidates SCG image paths in their own class, hints to the UI to use an SvgPicture to render
+/// Consolidates SCG image paths in their own class, 
+/// hints to the UI to use an SvgPicture to render
 class SvgPaths {
   static String compassFull = '${ImagePaths.common}/compass-full.svg';
   static String compassSimple = '${ImagePaths.common}/compass-simple.svg';
